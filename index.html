@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Carreira Tech</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Dev<span>Carreira</span></div>
+        <nav>
+            <button id="nav-inicio" class="active" onclick="navegar('inicio')">Início</button>
+            <button id="nav-profissao" onclick="navegar('profissao')">A Profissão</button>
+            <button id="nav-mercado" onclick="navegar('mercado')">Mercado</button>
+            <button id="nav-tecnologias" onclick="navegar('tecnologias')">Tecnologias</button>
+            <button id="nav-biblioteca" onclick="navegar('biblioteca')">Biblioteca</button>
+        </nav>
+    </header>
+
+    <div id="page-inicio" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <span class="badge">CONTEÚDO EXCLUSIVO</span>
+                <h1>Construa seu futuro na <span>Engenharia de Software</span></h1>
+                <p>Descubra o mapa de habilidades completo, entenda a realidade do mercado atual e acesse uma biblioteca de recursos recomendados para acelerar seu aprendizado.</p>
+                <div class="btn-group">
+                    <button class="btn" onclick="navegar('profissao')">Explorar Trilha</button>
+                    <button class="btn btn-secondary" onclick="abrirModal()">Receber Newsletter</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Código de programação em tela escura">
+            </div>
+        </section>
+    </div>
+
+    <div id="page-profissao" class="page">
+        <main class="container">
+            <div class="section-header">
+                <h2>O que faz um Desenvolvedor?</h2>
+                <p>Entenda o papel estratégico da engenharia de software na resolução de problemas complexos do mundo real.</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">💻</div>
+                    <h3>Desenvolvimento de Software</h3>
+                    <p>Escrita de código limpo, escalável e manutenção de arquiteturas que sustentam grandes aplicações de mercado.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Resolução de Problemas</h3>
+                    <p>Modelagem de algoritmos e automações de processos industriais, corporativos ou de engenharia.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">☁️</div>
+                    <h3>Arquitetura Cloud</h3>
+                    <p>Gerenciamento de microsserviços, balanceamento de carga e deploy de soluções em nuvem.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="page-mercado" class="page">
+        <main class="container">
+            <div class="section-header">
+                <h2>Panorama do Mercado Global</h2>
+                <p>Uma análise estatística detalhada sobre a demanda profissional e faixas de remuneração.</p>
+            </div>
+
+            <div class="layout-split">
+                <div class="split-text">
+                    <h3>Demanda por Especialistas</h3>
+                    <p>O mercado global continua em forte expansão para profissionais com sólidas bases em engenharia. Áreas de maior destaque incluem:</p>
+                    <ul>
+                        <li>Desenvolvimento de Inteligência Artificial e Modelos de Linguagem.</li>
+                        <li>Sistemas de Segurança da Informação e Criptografia.</li>
+                        <li>Engenharia de Dados em escala massiva de servidores.</li>
+                    </ul>
+                </div>
+                <div class="split-stats">
+                    <div class="stat-box">
+                        <h4>+15%</h4>
+                        <p>Crescimento estimado de vagas anuais</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4>92%</h4>
+                        <p>Índice de empregabilidade na área</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="page-tecnologias" class="page">
+        <main class="container">
+            <div class="section-header">
+                <h2>Stack Tecnológica Recomendada</h2>
+                <p>Ferramentas fundamentais que você deve dominar para atuar como desenvolvedor de alta performance.</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <span class="tech-tag">Linguagem Básica</span>
+                    <h3>JavaScript / TypeScript</h3>
+                    <p>Dominância absoluta na web e em back-ends modernos assíncronos baseados em microsserviços.</p>
+                </div>
+                <div class="card">
+                    <span class="tech-tag">Back-End Avançado</span>
+                    <h3>Python / Go</h3>
+                    <p>Linguagens ideais para o processamento numérico de alta performance, data science e automação.</p>
+                </div>
+                <div class="card">
+                    <span class="tech-tag">Infraestrutura</span>
+                    <h3>Docker & Git</h3>
+                    <p>Indispensáveis no controle de versões, conteinerização de ambientes e fluxos contínuos de CI/CD.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="page-biblioteca" class="page">
+        <main class="container">
+            <div class="section-header">
+                <h2>Biblioteca de Recursos</h2>
+                <p>Documentações oficiais e materiais técnicos fundamentais selecionados para consulta contínua.</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">📚</div>
+                    <h3>Documentação MDN Web</h3>
+                    <p>O guia de referência definitiva para compreender o funcionamento do núcleo da Web, HTML, CSS e JavaScript.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🐙</div>
+                    <h3>Guias do GitHub</h3>
+                    <p>Tutoriais essenciais para aprender fluxos de trabalho colaborativos em repositórios corporativos.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛠️</div>
+                    <h3>W3C Standards</h3>
+                    <p>Padrões de acessibilidade universal e semântica web que diferenciam profissionais sêniores.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="modalInscricao" class="modal-overlay">
+        <div class="modal">
+            <h3>Boletim de Engenharia</h3>
+            <p>Deixe o seu e-mail abaixo para receber informativos sobre tecnologia, mercado de desenvolvimento e dicas práticas semanais.</p>
+            <form onsubmit="confirmarInscricao(event)">
+                <input type="email" placeholder="Seu melhor e-mail institucional ou pessoal" required>
+                <div class="modal-buttons">
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="fecharModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-sm">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Plataforma DevCarreira. Todos os direitos reservados. Engenharia Web SPA.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
