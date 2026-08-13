@@ -15,8 +15,9 @@
             <button id="nav-profissao" onclick="navegar('profissao')">A Profissão</button>
             <button id="nav-mercado" onclick="navegar('mercado')">Mercado</button>
             <button id="nav-tecnologias" onclick="navegar('tecnologias')">Tecnologias</button>
-            <button id="nav-biblioteca" onclick="navegar('biblioteca')">Biblioteca</button>
+            <button id="nav-biblioteca" onclick="navegar('biblioteca')">Biblioteca & Blog</button>
         </nav>
+        <button id="btn-theme" class="btn-theme" onclick="alternarTema()">🌙 Escuro</button>
     </header>
 
     <div id="page-inicio" class="page active">
@@ -48,16 +49,22 @@
                     <div class="card-icon">💻</div>
                     <h3>Desenvolvimento de Software</h3>
                     <p>Escrita de código limpo, escalável e manutenção de arquiteturas que sustentam grandes aplicações de mercado.</p>
+                    <button class="btn-card-action" onclick="mostrarDetalhes('detalhes-dev')">Saber mais ⬇️</button>
+                    <p id="detalhes-dev" class="detalhes-ocultos">Envolve proficiência em estruturas de dados, algoritmos e testes automatizados.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">🧠</div>
                     <h3>Resolução de Problemas</h3>
                     <p>Modelagem de algoritmos e automações de processos industriais, corporativos ou de engenharia.</p>
+                    <button class="btn-card-action" onclick="mostrarDetalhes('detalhes-prob')">Saber mais ⬇️</button>
+                    <p id="detalhes-prob" class="detalhes-ocultos">Foco em lógica computacional e análise crítica de requisitos do negócio.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">☁️</div>
                     <h3>Arquitetura Cloud</h3>
                     <p>Gerenciamento de microsserviços, balanceamento de carga e deploy de soluções em nuvem.</p>
+                    <button class="btn-card-action" onclick="mostrarDetalhes('detalhes-cloud')">Saber mais ⬇️</button>
+                    <p id="detalhes-cloud" class="detalhes-ocultos">Uso extensivo de provedores como AWS, GCP, Azure e Docker.</p>
                 </div>
             </div>
         </main>
@@ -79,7 +86,18 @@
                         <li>Sistemas de Segurança da Informação e Criptografia.</li>
                         <li>Engenharia de Dados em escala massiva de servidores.</li>
                     </ul>
+
+                    <div class="calculadora-widget">
+                        <h4>Simulador de Nível Salarial Aprox.</h4>
+                        <div class="btn-group-calc">
+                            <button class="btn-calc" onclick="calcularSalario('Junior', this)">Júnior</button>
+                            <button class="btn-calc" onclick="calcularSalario('Pleno', this)">Pleno</button>
+                            <button class="btn-calc" onclick="calcularSalario('Senior', this)">Sênior</button>
+                        </div>
+                        <p id="resultado-salario" class="resultado-calc">Clique em um nível para estimar.</p>
+                    </div>
                 </div>
+
                 <div class="split-stats">
                     <div class="stat-box">
                         <h4>+15%</h4>
@@ -106,45 +124,148 @@
                     <span class="tech-tag">Linguagem Básica</span>
                     <h3>JavaScript / TypeScript</h3>
                     <p>Dominância absoluta na web e em back-ends modernos assíncronos baseados em microsserviços.</p>
+                    <button class="btn-interativo-sm" onclick="copiarComando('npm install typescript')">📋 Copiar comando</button>
                 </div>
                 <div class="card">
                     <span class="tech-tag">Back-End Avançado</span>
                     <h3>Python / Go</h3>
                     <p>Linguagens ideais para o processamento numérico de alta performance, data science e automação.</p>
+                    <button class="btn-interativo-sm" onclick="copiarComando('python --version')">📋 Copiar comando</button>
                 </div>
                 <div class="card">
                     <span class="tech-tag">Infraestrutura</span>
                     <h3>Docker & Git</h3>
                     <p>Indispensáveis no controle de versões, conteinerização de ambientes e fluxos contínuos de CI/CD.</p>
+                    <button class="btn-interativo-sm" onclick="copiarComando('git init')">📋 Copiar comando</button>
                 </div>
             </div>
         </main>
     </div>
 
     <div id="page-biblioteca" class="page">
-        <main class="container">
+        <main class="container-blog">
             <div class="section-header">
-                <h2>Biblioteca de Recursos</h2>
-                <p>Documentações oficiais e materiais técnicos fundamentais selecionados para consulta contínua.</p>
+                <h2>Biblioteca de Recursos & Publicações</h2>
+                <p>Artigos técnicos, documentações e materiais selecionados para estudo contínuo.</p>
+                
+                <div class="busca-container">
+                    <input type="text" id="campoBusca" placeholder="🔍 Pesquisar artigos por palavras-chave..." onkeyup="buscarArtigo()">
+                </div>
+
+                <div class="filtros-blog">
+                    <button class="btn-filtro active" onclick="filtrarPosts('todos', this)">Todos</button>
+                    <button class="btn-filtro" onclick="filtrarPosts('web', this)">Web</button>
+                    <button class="btn-filtro" onclick="filtrarPosts('devops', this)">DevOps</button>
+                </div>
             </div>
 
-            <div class="grid">
-                <div class="card">
-                    <div class="card-icon">📚</div>
-                    <h3>Documentação MDN Web</h3>
-                    <p>O guia de referência definitiva para compreender o funcionamento do núcleo da Web, HTML, CSS e JavaScript.</p>
+            <article class="post-card" data-categoria="web">
+                <div class="card-icon">📚</div>
+                <div class="post-conteudo">
+                    <div class="post-header-info">
+                        <h3>Documentação MDN Web</h3>
+                        <span class="tag-lido" style="display:none;">✔ Lido</span>
+                    </div>
+                    <p class="autor">Por: Ana Silva • 5 min de leitura</p>
+                    <p>O guia de referência definitiva para compreender o funcionamento do núcleo da Web, abordando padrões de HTML5, CSS flexbox/grid e APIs modernas do JavaScript.</p>
+                    
+                    <div class="rating-box">
+                        <span>Avaliação: </span>
+                        <span class="estrela" onclick="avaliarPost(this, 1)">★</span>
+                        <span class="estrela" onclick="avaliarPost(this, 2)">★</span>
+                        <span class="estrela" onclick="avaliarPost(this, 3)">★</span>
+                        <span class="estrela" onclick="avaliarPost(this, 4)">★</span>
+                        <span class="estrela" onclick="avaliarPost(this, 5)">★</span>
+                    </div>
+
+                    <div class="acoes-post">
+                        <button class="btn-curtir" onclick="alternarCurtida(this)">
+                            ❤️ <span class="contador">0</span> Curtidas
+                        </button>
+                        <button class="btn-salvar" onclick="alternarSalvar(this)">
+                            🔖 Salvar
+                        </button>
+                        <button class="btn-lido" onclick="alternarLido(this)">
+                            👁️ Marcar Lido
+                        </button>
+                        <button class="btn-compartilhar" onclick="compartilharPost('Documentação MDN Web')">
+                            🔗 Compartilhar
+                        </button>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon">🐙</div>
-                    <h3>Guias do GitHub</h3>
-                    <p>Tutoriais essenciais para aprender fluxos de trabalho colaborativos em repositórios corporativos.</p>
+            </article>
+
+            <article class="post-card" data-categoria="devops">
+                <div class="card-icon">🐙</div>
+                <div class="post-conteudo">
+                    <div class="post-header-info">
+                        <h3>Guias do GitHub & Workflow Git</h3>
+                        <span class="tag-lido" style="display:none;">✔ Lido</span>
+                    </div>
+                    <p class="autor">Por: Carlos Eduardo • 8 min de leitura</p>
+                    <p>Tutoriais essenciais para aprender fluxos de trabalho colaborativos (Git Flow, Pull Requests, Code Review) em repositórios corporativos de grande porte.</p>
+                    
+                    <div class="rating-box">
+                        <span>Avaliação: </span>
+                        <span class="estrela" onclick="avaliarPost(this, 1)">★</span>
+                        <span class="estrela" onclick="avaliarPost(this, 2)">★</span>
+                        <span class="estrela" onclick="avaliarPost(this, 3)">★</span>
+                        <span class="estrela" onclick="avaliarPost(this, 4)">★</span>
+                        <span class="estrela" onclick="avaliarPost(this, 5)">★</span>
+                    </div>
+
+                    <div class="acoes-post">
+                        <button class="btn-curtir" onclick="alternarCurtida(this)">
+                            ❤️ <span class="contador">0</span> Curtidas
+                        </button>
+                        <button class="btn-salvar" onclick="alternarSalvar(this)">
+                            🔖 Salvar
+                        </button>
+                        <button class="btn-lido" onclick="alternarLido(this)">
+                            👁️ Marcar Lido
+                        </button>
+                        <button class="btn-compartilhar" onclick="compartilharPost('Guias do GitHub')">
+                            🔗 Compartilhar
+                        </button>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon">🛠️</div>
-                    <h3>W3C Standards</h3>
-                    <p>Padrões de acessibilidade universal e semântica web que diferenciam profissionais sêniores.</p>
+            </article>
+
+            <article class="post-card" data-categoria="web">
+                <div class="card-icon">🛠️</div>
+                <div class="post-conteudo">
+                    <div class="post-header-info">
+                        <h3>Padrões W3C e Acessibilidade Web</h3>
+                        <span class="tag-lido" style="display:none;">✔ Lido</span>
+                    </div>
+                    <p class="autor">Por: Beatriz Costa • 6 min de leitura</p>
+                    <p>Diretrizes fundamentais da W3C para garantir que suas aplicações web sejam acessíveis a todos os usuários, utilizando marcação semântica apropriada.</p>
+                    
+                    <div class="rating-box">
+                        <span>Avaliação: </span>
+                        <span class="estrela" onclick="avaliarPost(this, 1)">★</span>
+                        <span class="estrela" onclick="avaliarPost(this, 2)">★</span>
+                        <span class="estrela" onclick="avaliarPost(this, 3)">★</span>
+                        <span class="estrela" onclick="avaliarPost(this, 4)">★</span>
+                        <span class="estrela" onclick="avaliarPost(this, 5)">★</span>
+                    </div>
+
+                    <div class="acoes-post">
+                        <button class="btn-curtir" onclick="alternarCurtida(this)">
+                            ❤️ <span class="contador">0</span> Curtidas
+                        </button>
+                        <button class="btn-salvar" onclick="alternarSalvar(this)">
+                            🔖 Salvar
+                        </button>
+                        <button class="btn-lido" onclick="alternarLido(this)">
+                            👁️ Marcar Lido
+                        </button>
+                        <button class="btn-compartilhar" onclick="compartilharPost('Padrões W3C')">
+                            🔗 Compartilhar
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </article>
         </main>
     </div>
 
